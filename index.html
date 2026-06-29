@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeadScrape Barber</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Navegacao principal">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">LS</span>
+          <div>
+            <strong>LeadScrape</strong>
+            <span>Barber</span>
+          </div>
+        </div>
+
+        <nav class="nav-list" aria-label="Secoes">
+          <a class="nav-item active" href="#run">Pesquisa</a>
+          <a class="nav-item" href="#results">Resultados</a>
+          <a class="nav-item" href="#settings">Integracoes</a>
+        </nav>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Scraping de leads</p>
+            <h1>Barbearias sem site proprio</h1>
+          </div>
+          <div class="run-state" id="runState">Pronto</div>
+        </header>
+
+        <section class="control-grid" id="run">
+          <form class="search-panel" id="searchForm">
+            <div class="panel-heading">
+              <h2>Nova pesquisa</h2>
+              <span id="dailyLimit">0/30 hoje</span>
+            </div>
+
+            <label class="field">
+              <span>Cidade</span>
+              <input id="cityInput" name="city" type="text" value="Curitiba" autocomplete="address-level2" required>
+            </label>
+
+            <label class="field">
+              <span>Quantidade maxima</span>
+              <input id="limitInput" name="limit" type="number" min="1" max="30" value="30" required>
+            </label>
+
+            <label class="field">
+              <span>Palavra-chave</span>
+              <input id="keywordInput" name="keyword" type="text" value="barbearias" required>
+            </label>
+
+            <div class="settings-row">
+              <label class="switch">
+                <input id="dryRunInput" type="checkbox" checked>
+                <span>Dry run</span>
+              </label>
+              <label class="switch">
+                <input id="twoPagesInput" type="checkbox" checked>
+                <span>Buscar site em 2 paginas</span>
+              </label>
+            </div>
+
+            <button class="primary-button" id="startButton" type="submit">
+              <span aria-hidden="true">▶</span>
+              Iniciar scraping
+            </button>
+          </form>
+
+          <div class="metrics-panel" aria-label="Resumo da execucao">
+            <div class="metric">
+              <span>Encontrados</span>
+              <strong id="foundMetric">0</strong>
+            </div>
+            <div class="metric">
+              <span>Aprovados</span>
+              <strong id="approvedMetric">0</strong>
+            </div>
+            <div class="metric">
+              <span>Trello</span>
+              <strong id="trelloMetric">0</strong>
+            </div>
+            <div class="metric">
+              <span>Chamadas</span>
+              <strong id="callsMetric">0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="progress-band" aria-label="Progresso da pesquisa">
+          <div class="progress-copy">
+            <span id="progressLabel">Aguardando inicio</span>
+            <strong id="progressPercent">0%</strong>
+          </div>
+          <div class="progress-track">
+            <span id="progressBar"></span>
+          </div>
+        </section>
+
+        <section class="content-grid" id="results">
+          <section class="table-panel">
+            <div class="panel-heading">
+              <h2>Perfis analisados</h2>
+              <button class="ghost-button" id="clearButton" type="button">Limpar</button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Perfil</th>
+                    <th>Seguidores</th>
+                    <th>Ultimo post</th>
+                    <th>Site</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="resultsBody">
+                  <tr class="empty-row">
+                    <td colspan="5">Nenhuma pesquisa executada.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <aside class="activity-panel">
+            <div class="panel-heading">
+              <h2>Fila</h2>
+              <span id="queueCount">0 itens</span>
+            </div>
+            <ol class="activity-list" id="activityList">
+              <li>Aguardando nova pesquisa.</li>
+            </ol>
+          </aside>
+        </section>
+
+        <section class="integration-band" id="settings" aria-label="Integracoes">
+          <div class="integration-item ready">
+            <span>Serper</span>
+            <strong>Google Search</strong>
+          </div>
+          <div class="integration-item ready">
+            <span>Apify</span>
+            <strong id="apifyStatus">Verificando token</strong>
+          </div>
+          <div class="integration-item" id="neonStatus">
+            <span>Neon</span>
+            <strong>Verificando banco</strong>
+          </div>
+          <div class="integration-item" id="trelloStatus">
+            <span>Trello</span>
+            <strong>Verificando token</strong>
+          </div>
+        </section>
+
+        <section class="trello-panel" id="trelloSettings" aria-label="Destino Trello">
+          <div class="panel-heading">
+            <h2>Destino Trello</h2>
+            <button class="ghost-button" id="refreshTrelloButton" type="button">Atualizar</button>
+          </div>
+
+          <div class="trello-fields">
+            <label class="field">
+              <span>Board</span>
+              <select id="trelloBoardSelect">
+                <option value="">Carregando boards</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Lista</span>
+              <select id="trelloListSelect">
+                <option value="">Escolha um board primeiro</option>
+              </select>
+            </label>
+          </div>
+
+          <p class="helper-text" id="trelloSetupStatus">Use essa area para pegar os IDs que vamos fixar no .env.</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js?v=2026-06-27-trello-setup"></script>
+  </body>
+</html>

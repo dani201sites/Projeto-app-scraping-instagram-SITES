@@ -1,0 +1,13 @@
+{
+  "name": "projeto-scraping-leads-google",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check lib/app.js && node --check script.js && node --check api/health.js && node --check api/database/summary.js && node --check api/serper/instagram-profiles.js && node --check api/serper/site-search.js && node --check api/apify/instagram-profiles.js && node --check api/trello/boards.js && node --check api/trello/lists.js && node --check api/trello/cards.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.1"
+  }
+}
