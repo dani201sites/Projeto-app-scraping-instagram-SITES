@@ -21,6 +21,7 @@ const callsMetric = document.querySelector("#callsMetric");
 const neonStatus = document.querySelector("#neonStatus");
 const apifyStatus = document.querySelector("#apifyStatus");
 const trelloStatus = document.querySelector("#trelloStatus");
+const aiStatus = document.querySelector("#aiStatus");
 const trelloBoardSelect = document.querySelector("#trelloBoardSelect");
 const trelloListSelect = document.querySelector("#trelloListSelect");
 const trelloSetupStatus = document.querySelector("#trelloSetupStatus");
@@ -122,6 +123,7 @@ function mergeApifyProfiles(profiles, apifyProfiles = []) {
     return {
       ...profile,
       name: apifyProfile.displayName || profile.name,
+      bio: apifyProfile.bio,
       followers: apifyProfile.followersCount,
       daysSincePost: apifyProfile.daysSincePost,
       lastNonPinnedPostAt: apifyProfile.lastNonPinnedPostAt,
@@ -393,12 +395,25 @@ async function refreshHealth() {
       trelloStatus.classList.remove("ready");
       trelloStatus.querySelector("strong").textContent = "Pendente";
     }
+
+    if (health.openRouterConfigured && health.aiPromptGenerationEnabled) {
+      aiStatus.classList.add("ready");
+      aiStatus.querySelector("strong").textContent = "Prompt ativo";
+    } else if (health.openRouterConfigured) {
+      aiStatus.classList.remove("ready");
+      aiStatus.querySelector("strong").textContent = "Token configurado";
+    } else {
+      aiStatus.classList.remove("ready");
+      aiStatus.querySelector("strong").textContent = "Pendente";
+    }
   } catch {
     neonStatus.classList.remove("ready");
     trelloStatus.classList.remove("ready");
+    aiStatus.classList.remove("ready");
     neonStatus.querySelector("strong").textContent = "Indisponivel";
     apifyStatus.textContent = "Indisponivel";
     trelloStatus.querySelector("strong").textContent = "Indisponivel";
+    aiStatus.querySelector("strong").textContent = "Indisponivel";
   }
 }
 

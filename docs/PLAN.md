@@ -97,6 +97,22 @@ Resultado esperado:
 
 - A ferramenta pode ser testada sem gastar desnecessariamente e sem poluir o Trello.
 
+## Etapa 8: Prompt automatico com IA
+
+Implementar:
+
+- OpenRouter como provedor de IA.
+- Geracao de prompt apenas para leads qualificados sem site proprio.
+- Uso dos dados publicos vindos da Apify: nome, bio, cidade, link da bio, WhatsApp e dados de atividade.
+- Limite por execucao para controlar custo.
+- Inclusao do prompt final dentro do card do Trello.
+- Persistencia do prompt e metadados no Neon.
+
+Resultado esperado:
+
+- Cada card qualificado pode chegar no Trello com um prompt pronto para criar o site da barbearia.
+- Prints do Instagram continuam fora do banco; quando implementados, devem ser temporarios.
+
 ## Primeiro MVP recomendado
 
 O primeiro MVP deve fazer apenas:
@@ -110,4 +126,3 @@ O primeiro MVP deve fazer apenas:
 7. Criar card no Trello em modo real ou simulado.
 
 Depois disso, refinamos classificacao, visual e automacoes.
-

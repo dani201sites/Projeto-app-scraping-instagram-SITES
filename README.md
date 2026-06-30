@@ -27,6 +27,7 @@ barbearias em curitiba site:instagram.com
 - Apify: leitura de dados publicos de perfis do Instagram.
 - Trello: criacao dos cards de leads.
 - Neon Postgres: controle de duplicados, historico de execucoes e limite diario.
+- OpenRouter: geracao do prompt de criacao de site para leads sem site.
 
 ## Configuracao local
 
@@ -86,6 +87,10 @@ Veja [Configuracao da Apify](docs/APIFY_SETUP.md).
 ## Configuracao do Trello
 
 Veja [Configuracao do Trello](docs/TRELLO_SETUP.md).
+
+## Configuracao do OpenRouter
+
+Veja [Configuracao do OpenRouter](docs/OPENROUTER_SETUP.md).
 
 ## Deploy na Vercel
 

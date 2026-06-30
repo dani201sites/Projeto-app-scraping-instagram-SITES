@@ -46,6 +46,12 @@ TRELLO_TOKEN=
 TRELLO_BOARD_ID=
 TRELLO_LIST_ID=
 
+OPENROUTER_API_KEY=
+OPENROUTER_MODEL=google/gemini-2.5-flash
+ENABLE_AI_PROMPT_GENERATION=false
+MAX_AI_PROMPTS_PER_RUN=5
+PUBLIC_APP_URL=https://SEU-PROJETO.vercel.app
+
 MAX_PROFILES_PER_DAY=30
 MIN_INSTAGRAM_FOLLOWERS=500
 MAX_INSTAGRAM_FOLLOWERS=8000
@@ -74,6 +80,8 @@ O retorno esperado deve indicar:
   "neonConfigured": true,
   "trelloConfigured": true,
   "trelloTargetConfigured": true,
+  "openRouterConfigured": true,
+  "aiPromptGenerationEnabled": true,
   "databaseConnected": true
 }
 ```
@@ -92,10 +100,10 @@ Para o MVP, teste primeiro com 3 a 5 perfis.
 
 ## Proximo passo
 
-Depois que o deploy estiver respondendo, implementar:
+Depois que o deploy estiver respondendo, implementar a segunda fase:
 
 ```text
-lead sem site -> print temporario -> OpenRouter -> prompt final -> Trello
+lead sem site -> print temporario -> OpenRouter -> prompt final enriquecido -> Trello
 ```
 
-O print deve ser descartado depois da analise. O banco deve salvar apenas o prompt final e os metadados da IA.
+Na fase atual, o OpenRouter ja gera o prompt final usando os dados publicos vindos da Apify: nome, bio, cidade, link da bio, WhatsApp, seguidores e recencia do post. O print ainda nao e salvo nem enviado. Quando adicionarmos print, ele deve ser descartado depois da analise. O banco deve salvar apenas o prompt final e os metadados da IA.

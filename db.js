@@ -233,6 +233,41 @@ export async function saveTrelloCardCreated({ runId, handle, cardUrl }) {
   return profileId;
 }
 
+export async function saveAiPromptGenerated({ runId, handle, aiResult }) {
+  if (!isDatabaseConfigured() || !runId || !handle || !aiResult?.prompt) {
+    return null;
+  }
+
+  try {
+    const profileRows = await getClient()`
+      select id
+      from instagram_profiles
+      where handle = ${handle}
+      limit 1
+    `;
+    const profileId = profileRows[0]?.id || null;
+
+    if (!profileId) {
+      return null;
+    }
+
+    await getClient()`
+      update lead_results
+      set website_prompt = ${aiResult.prompt},
+          ai_analysis = ${JSON.stringify(aiResult.analysis || {})}::jsonb,
+          ai_model = ${aiResult.model || null},
+          prompt_generated_at = now()
+      where run_id = ${runId}
+        and profile_id = ${profileId}
+    `;
+
+    return profileId;
+  } catch (error) {
+    console.warn(`Nao foi possivel salvar prompt da IA no Neon: ${error.message}`);
+    return null;
+  }
+}
+
 export async function getDatabaseSummary() {
   if (!isDatabaseConfigured()) {
     return {
