@@ -52,9 +52,9 @@ Se algum fluxo exigir uma sessao logada do Instagram, ele deve ser recusado ou s
 
 ## Front-end local
 
-- [Interface local](index.html)
-- [Estilos](styles.css)
-- [Fluxo da pesquisa](script.js)
+- [Interface local](public/index.html)
+- [Estilos](public/styles.css)
+- [Fluxo da pesquisa](public/script.js)
 - [Backend local](server.js)
 
 O front-end chama o backend local para buscar perfis reais pelo Serper, validar dados publicos via Apify, verificar site proprio, salvar leads qualificados no Neon e criar cards no Trello quando `DRY_RUN=false`.

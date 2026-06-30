@@ -5,13 +5,13 @@
 O projeto agora roda nos dois formatos:
 
 - Local: `npm start`, usando `server.js`.
-- Vercel: arquivos em `api/`, usando `lib/app.js`.
+- Vercel: frontend em `public/` e rotas serverless em `api/`, usando `lib/app.js`.
 
-O front continua estatico na raiz:
+O front estatico fica em:
 
-- `index.html`
-- `styles.css`
-- `script.js`
+- `public/index.html`
+- `public/styles.css`
+- `public/script.js`
 
 As rotas de API na Vercel sao:
 
