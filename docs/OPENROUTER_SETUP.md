@@ -13,8 +13,9 @@ No fluxo atual, a IA usa os dados publicos ja coletados pela Apify:
 - WhatsApp, quando encontrado.
 - Seguidores.
 - Data do ultimo post nao fixado.
+- Foto de perfil e imagens publicas de posts recentes, quando a Apify retornar essas URLs.
 
-O print temporario do Instagram fica para a proxima etapa. Por enquanto nenhum print e salvo.
+O print literal da tela do Instagram fica para uma etapa mais robusta. Por enquanto nenhum print e salvo.
 
 ## Variaveis
 
@@ -25,6 +26,7 @@ OPENROUTER_API_KEY=
 OPENROUTER_MODEL=google/gemini-2.5-flash
 ENABLE_AI_PROMPT_GENERATION=true
 MAX_AI_PROMPTS_PER_RUN=5
+MAX_AI_IMAGES_PER_PROMPT=4
 PUBLIC_APP_URL=https://SEU-PROJETO.vercel.app
 ```
 
@@ -58,6 +60,8 @@ A IA so roda quando o card do Trello seria criado de verdade:
 
 Se uma busca criar 12 cards e o limite estiver em 5, os 5 primeiros recebem prompt da IA e os outros cards sao criados com uma observacao dizendo que o limite foi atingido.
 
+`MAX_AI_IMAGES_PER_PROMPT=4` limita quantas imagens publicas da Apify vao para a IA em cada prompt. Use 0 para desativar leitura visual sem desligar a geracao textual.
+
 ## Resultado no Trello
 
 O card recebe:
@@ -68,3 +72,14 @@ O card recebe:
 
 Se a IA falhar, o card ainda e criado, mas a descricao informa o erro.
 
+## Caminho robusto futuro
+
+Se as imagens retornadas pela Apify nao forem suficientes, a proxima camada sera criar um provedor de screenshot temporario.
+
+Opcoes previstas:
+
+- `apify_images`: fluxo atual, sem navegador proprio.
+- `screenshot_service`: Browserless ou servico equivalente para print da primeira dobra.
+- `apify_screenshot_actor`: actor dedicado da Apify para screenshot.
+
+O contrato deve continuar o mesmo: retornar URLs ou base64 temporario para a IA, descartar a imagem e salvar apenas prompt/metadados.

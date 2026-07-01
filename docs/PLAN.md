@@ -104,7 +104,9 @@ Implementar:
 - OpenRouter como provedor de IA.
 - Geracao de prompt apenas para leads qualificados sem site proprio.
 - Uso dos dados publicos vindos da Apify: nome, bio, cidade, link da bio, WhatsApp e dados de atividade.
+- Uso de imagens publicas retornadas pela Apify para extrair paleta e estilo visual.
 - Limite por execucao para controlar custo.
+- Limite de imagens por prompt para controlar custo.
 - Inclusao do prompt final dentro do card do Trello.
 - Persistencia do prompt e metadados no Neon.
 
@@ -112,6 +114,7 @@ Resultado esperado:
 
 - Cada card qualificado pode chegar no Trello com um prompt pronto para criar o site da barbearia.
 - Prints do Instagram continuam fora do banco; quando implementados, devem ser temporarios.
+- O fluxo fica preparado para depois trocar ou complementar as imagens da Apify por um servico de screenshot real.
 
 ## Primeiro MVP recomendado
 

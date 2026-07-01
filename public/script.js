@@ -129,6 +129,8 @@ function mergeApifyProfiles(profiles, apifyProfiles = []) {
       lastNonPinnedPostAt: apifyProfile.lastNonPinnedPostAt,
       externalUrl: apifyProfile.externalUrl,
       whatsappUrl: apifyProfile.whatsappUrl,
+      profilePictureUrl: apifyProfile.profilePictureUrl,
+      visualImageUrls: apifyProfile.visualImageUrls || [],
       apifyStatus: apifyProfile.status,
       apifyNotes: apifyProfile.notes
     };

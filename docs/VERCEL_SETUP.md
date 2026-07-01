@@ -50,6 +50,7 @@ OPENROUTER_API_KEY=
 OPENROUTER_MODEL=google/gemini-2.5-flash
 ENABLE_AI_PROMPT_GENERATION=false
 MAX_AI_PROMPTS_PER_RUN=5
+MAX_AI_IMAGES_PER_PROMPT=4
 PUBLIC_APP_URL=https://SEU-PROJETO.vercel.app
 
 MAX_PROFILES_PER_DAY=30
@@ -106,4 +107,4 @@ Depois que o deploy estiver respondendo, implementar a segunda fase:
 lead sem site -> print temporario -> OpenRouter -> prompt final enriquecido -> Trello
 ```
 
-Na fase atual, o OpenRouter ja gera o prompt final usando os dados publicos vindos da Apify: nome, bio, cidade, link da bio, WhatsApp, seguidores e recencia do post. O print ainda nao e salvo nem enviado. Quando adicionarmos print, ele deve ser descartado depois da analise. O banco deve salvar apenas o prompt final e os metadados da IA.
+Na fase atual, o OpenRouter gera o prompt final usando os dados publicos vindos da Apify: nome, bio, cidade, link da bio, WhatsApp, seguidores, recencia do post e URLs de imagens publicas retornadas pela Apify. O print literal da tela ainda nao e salvo nem enviado. Quando adicionarmos print, ele deve ser descartado depois da analise. O banco deve salvar apenas o prompt final e os metadados da IA.
