@@ -22,6 +22,7 @@ const neonStatus = document.querySelector("#neonStatus");
 const apifyStatus = document.querySelector("#apifyStatus");
 const trelloStatus = document.querySelector("#trelloStatus");
 const aiStatus = document.querySelector("#aiStatus");
+const browserlessStatus = document.querySelector("#browserlessStatus");
 const trelloBoardSelect = document.querySelector("#trelloBoardSelect");
 const trelloListSelect = document.querySelector("#trelloListSelect");
 const trelloSetupStatus = document.querySelector("#trelloSetupStatus");
@@ -408,14 +409,27 @@ async function refreshHealth() {
       aiStatus.classList.remove("ready");
       aiStatus.querySelector("strong").textContent = "Pendente";
     }
+
+    if (health.screenshotProvider === "browserless" && health.browserlessConfigured) {
+      browserlessStatus.classList.add("ready");
+      browserlessStatus.querySelector("strong").textContent = "Print ativo";
+    } else if (health.browserlessConfigured) {
+      browserlessStatus.classList.remove("ready");
+      browserlessStatus.querySelector("strong").textContent = "Token configurado";
+    } else {
+      browserlessStatus.classList.remove("ready");
+      browserlessStatus.querySelector("strong").textContent = "Pendente";
+    }
   } catch {
     neonStatus.classList.remove("ready");
     trelloStatus.classList.remove("ready");
     aiStatus.classList.remove("ready");
+    browserlessStatus.classList.remove("ready");
     neonStatus.querySelector("strong").textContent = "Indisponivel";
     apifyStatus.textContent = "Indisponivel";
     trelloStatus.querySelector("strong").textContent = "Indisponivel";
     aiStatus.querySelector("strong").textContent = "Indisponivel";
+    browserlessStatus.querySelector("strong").textContent = "Indisponivel";
   }
 }
 

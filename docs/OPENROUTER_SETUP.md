@@ -28,6 +28,12 @@ ENABLE_AI_PROMPT_GENERATION=true
 MAX_AI_PROMPTS_PER_RUN=5
 MAX_AI_IMAGES_PER_PROMPT=4
 PUBLIC_APP_URL=https://SEU-PROJETO.vercel.app
+
+SCREENSHOT_PROVIDER=browserless
+BROWSERLESS_API_KEY=
+BROWSERLESS_BASE_URL=https://production-sfo.browserless.io
+MAX_SCREENSHOTS_PER_RUN=3
+BROWSERLESS_WAIT_MS=3500
 ```
 
 Para testar sem gastar, deixe:
@@ -61,6 +67,14 @@ A IA so roda quando o card do Trello seria criado de verdade:
 Se uma busca criar 12 cards e o limite estiver em 5, os 5 primeiros recebem prompt da IA e os outros cards sao criados com uma observacao dizendo que o limite foi atingido.
 
 `MAX_AI_IMAGES_PER_PROMPT=4` limita quantas imagens publicas da Apify vao para a IA em cada prompt. Use 0 para desativar leitura visual sem desligar a geracao textual.
+
+`MAX_SCREENSHOTS_PER_RUN=3` limita quantos screenshots temporarios o Browserless pode gerar por execucao. Isso protege o free tier. Os outros leads continuam com prompt textual.
+
+## Browserless
+
+Quando `SCREENSHOT_PROVIDER=browserless`, o backend chama a API `/screenshot` do Browserless e recebe uma imagem PNG em memoria. Essa imagem e convertida para base64, enviada ao OpenRouter e descartada.
+
+Nada e salvo no projeto, no Neon ou no Trello. O Trello recebe apenas o prompt final e as observacoes da IA.
 
 ## Resultado no Trello
 

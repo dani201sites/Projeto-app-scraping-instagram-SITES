@@ -105,6 +105,7 @@ Implementar:
 - Geracao de prompt apenas para leads qualificados sem site proprio.
 - Uso dos dados publicos vindos da Apify: nome, bio, cidade, link da bio, WhatsApp e dados de atividade.
 - Uso de imagens publicas retornadas pela Apify para extrair paleta e estilo visual.
+- Screenshot temporario via Browserless para melhorar analise visual quando houver limite disponivel.
 - Limite por execucao para controlar custo.
 - Limite de imagens por prompt para controlar custo.
 - Inclusao do prompt final dentro do card do Trello.
@@ -114,7 +115,7 @@ Resultado esperado:
 
 - Cada card qualificado pode chegar no Trello com um prompt pronto para criar o site da barbearia.
 - Prints do Instagram continuam fora do banco; quando implementados, devem ser temporarios.
-- O fluxo fica preparado para depois trocar ou complementar as imagens da Apify por um servico de screenshot real.
+- Screenshots do Browserless sao enviados para a IA em memoria e descartados.
 
 ## Primeiro MVP recomendado
 

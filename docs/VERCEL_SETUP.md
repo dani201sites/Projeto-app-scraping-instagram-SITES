@@ -53,6 +53,12 @@ MAX_AI_PROMPTS_PER_RUN=5
 MAX_AI_IMAGES_PER_PROMPT=4
 PUBLIC_APP_URL=https://SEU-PROJETO.vercel.app
 
+SCREENSHOT_PROVIDER=browserless
+BROWSERLESS_API_KEY=
+BROWSERLESS_BASE_URL=https://production-sfo.browserless.io
+MAX_SCREENSHOTS_PER_RUN=3
+BROWSERLESS_WAIT_MS=3500
+
 MAX_PROFILES_PER_DAY=30
 MIN_INSTAGRAM_FOLLOWERS=500
 MAX_INSTAGRAM_FOLLOWERS=8000
@@ -83,6 +89,8 @@ O retorno esperado deve indicar:
   "trelloTargetConfigured": true,
   "openRouterConfigured": true,
   "aiPromptGenerationEnabled": true,
+  "screenshotProvider": "browserless",
+  "browserlessConfigured": true,
   "databaseConnected": true
 }
 ```
